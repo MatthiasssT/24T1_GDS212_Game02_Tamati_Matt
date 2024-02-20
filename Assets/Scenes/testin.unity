@@ -279,7 +279,11 @@ MonoBehaviour:
   upgradePanel: {fileID: 1393417502}
   possiblePowerUps:
   - {fileID: 11400000, guid: 4505d51e634ec6743abd2e42ca4b7b2c, type: 2}
+  - {fileID: 11400000, guid: 89ba81c11376b7e4bb1c0ded1947201b, type: 2}
+  - {fileID: 11400000, guid: 4505d51e634ec6743abd2e42ca4b7b2c, type: 2}
   upgradeSprites:
+  - {fileID: 21300000, guid: 60c1d42986dc0094c808b9e135f31ba2, type: 3}
+  - {fileID: 21300000, guid: 60c1d42986dc0094c808b9e135f31ba2, type: 3}
   - {fileID: 21300000, guid: 60c1d42986dc0094c808b9e135f31ba2, type: 3}
   upgradeButtons:
   - {fileID: 1090918885}
@@ -699,6 +703,10 @@ PrefabInstance:
     - target: {fileID: 6286755664967618196, guid: efdf2af694d12a14ca324edb675f4d62, type: 3}
       propertyPath: m_Name
       value: BasicEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286755664967618196, guid: efdf2af694d12a14ca324edb675f4d62, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7946675674602955588, guid: efdf2af694d12a14ca324edb675f4d62, type: 3}
       propertyPath: m_LocalPosition.x
