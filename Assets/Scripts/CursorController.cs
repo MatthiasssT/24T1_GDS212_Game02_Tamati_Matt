@@ -1,24 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CursorController : MonoBehaviour
 {
     public Transform pivotPoint; // Reference to the pivot point transform
-    private float rotationSpeed = 80f; // Adjust this value to control the rotation speed
+    private float rotationSpeed = 40f; // Adjust this value to control the rotation speed
     private float rotationOffset = 315f; // Adjust this value to control the rotation offset
     private float followSpeed = 80f;
     public float mouseSensitivity = 1f; // Adjust this value to control the mouse sensitivity
 
-    public int maxHealth = 100; // Maximum health of the player
-    private int currentHealth; // Current health of the player
-
-    public GameObject handleCollider;
 
     void Start()
     {
         Cursor.visible = false; // Hide the cursor
-        currentHealth = maxHealth; // Initialize current health to max health
     }
 
     void Update()
@@ -78,28 +74,5 @@ public class CursorController : MonoBehaviour
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, -screenBounds.x, screenBounds.x);
         clampedPosition.y = Mathf.Clamp(clampedPosition.y, -screenBounds.y, screenBounds.y);
         pivotPoint.position = clampedPosition;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        Collider handleColliderComponent = handleCollider.GetComponent<Collider>();
-        Collider[] hitColliders = Physics.OverlapBox(handleColliderComponent.bounds.center, handleColliderComponent.bounds.extents, Quaternion.identity);
-        
-        foreach (Collider col in hitColliders)
-        {
-            if (col.gameObject == handleCollider)
-            {
-                currentHealth -= damage;
-                if (currentHealth <= 0)
-                {
-                    Die();
-                }
-            }
-        }
-    }
-
-    void Die()
-    {
-        Debug.Log("player Died");
     }
 }
