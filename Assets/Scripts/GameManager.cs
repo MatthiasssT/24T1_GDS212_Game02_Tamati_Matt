@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
         StartRound();
     }
 
-    void StartRound()
+    public void StartRound()
     {
         // Increment the round number
         currentRound++;

@@ -9,8 +9,11 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Hit anything");    
         if (other.CompareTag("Enemy"))
         {
+            Debug.Log("Hit enemy");
+        
             // Check if the attack lands a critical hit
             bool isCrit = Random.value < critChance;
 

@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1315397046221165247}
-  - component: {fileID: 325581982395404901}
+  - component: {fileID: 9114893782260966861}
+  - component: {fileID: 7460147038201110732}
   m_Layer: 0
   m_Name: DamageCollider
   m_TagString: Untagged
@@ -32,7 +33,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 731929581209781797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &325581982395404901
+--- !u!114 &9114893782260966861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614910570126329119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269a1c989c1ec0c44980920997a94707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  critChance: 0.1
+--- !u!68 &7460147038201110732
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,7 +59,7 @@ EdgeCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -64,14 +79,14 @@ EdgeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.03
+  m_Offset: {x: -0.4, y: -0.4}
+  m_EdgeRadius: 0.05
   m_Points:
-  - {x: -0.14, y: 0}
-  - {x: 0.25, y: 0.39}
-  - {x: 0.43, y: 0.44}
-  - {x: 0.38, y: 0.25}
-  - {x: -0.01, y: -0.14}
+  - {x: -0.022193462, y: -0.14286307}
+  - {x: 0.332679, y: 0.20761287}
+  - {x: 0.3869112, y: 0.4104197}
+  - {x: 0.20528692, y: 0.3492075}
+  - {x: -0.15689883, y: 0.0055420697}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -118,9 +133,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5784446476404716170}
   - component: {fileID: 6156576441703790617}
+  - component: {fileID: 2291855540572691320}
   m_Layer: 0
   m_Name: healthCollider
-  m_TagString: Untagged
+  m_TagString: PlayerHealth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 7768374972540428336}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.4, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -173,16 +189,31 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.03
+  m_EdgeRadius: 0.052
   m_Points:
-  - {x: -0.35, y: -0.36}
-  - {x: -0.09, y: -0.1}
-  - {x: -0.22, y: 0.02}
-  - {x: 0.03, y: -0.23}
+  - {x: -0.40043184, y: -0.39782378}
+  - {x: -0.13753095, y: -0.13619247}
+  - {x: -0.22758588, y: -0.0052158535}
+  - {x: -0.005603552, y: -0.22280177}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &2291855540572691320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7768374972540428336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bded75aad409e724983a1806e6ca544f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthSlider: {fileID: 0}
 --- !u!1 &8549713085233926302
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,9 +224,10 @@ GameObject:
   m_Component:
   - component: {fileID: 731929581209781797}
   - component: {fileID: 4767257678230572584}
-  - component: {fileID: 7536347378608074416}
-  - component: {fileID: 7115664114606166520}
   - component: {fileID: 8211040247174158199}
+  - component: {fileID: 9165344726284944783}
+  - component: {fileID: 3234681928760580304}
+  - component: {fileID: 911351530029278149}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -212,7 +244,7 @@ Transform:
   m_GameObject: {fileID: 8549713085233926302}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.425, y: -0.43, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -272,7 +304,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7536347378608074416
+--- !u!50 &8211040247174158199
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8549713085233926302}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 50
+  m_LinearDrag: 2
+  m_AngularDrag: 10
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!257 &9165344726284944783
+TargetJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8549713085233926302}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_Anchor: {x: -0.02, y: 0}
+  m_Target: {x: 0.07754749, y: 0.0812121}
+  m_AutoConfigureTarget: 0
+  m_MaxForce: 50000
+  m_DampingRatio: 1
+  m_Frequency: 5
+--- !u!114 &3234681928760580304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,13 +360,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8549713085233926302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0d4c80d11787bf40b3189bc3e9c8961, type: 3}
+  m_Script: {fileID: 11500000, guid: d62bb827ccde97847992314c0c1aa587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pivotPoint: {fileID: 3661551529465504202}
-  rotationSpeed: 300
---- !u!60 &7115664114606166520
-PolygonCollider2D:
+  centerOfMassOffset: {x: -0.4, y: -0.4}
+--- !u!68 &911351530029278149
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -298,7 +376,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -319,58 +397,11 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_EdgeRadius: 0.04
   m_Points:
-    m_Paths:
-    - - {x: 0.37, y: 0.22}
-      - {x: 0.44, y: 0.37}
-      - {x: 0.44, y: 0.44}
-      - {x: 0.29, y: 0.42}
-      - {x: -0.09, y: 0.05}
-      - {x: -0.22, y: 0.06}
-      - {x: -0.23, y: -0.03}
-      - {x: -0.19, y: -0.05}
-      - {x: -0.43, y: -0.33}
-      - {x: -0.43, y: -0.34}
-      - {x: -0.33, y: -0.43}
-      - {x: -0.31, y: -0.43}
-      - {x: -0.27, y: -0.38}
-      - {x: -0.08, y: -0.18}
-      - {x: 0.06, y: -0.21}
-      - {x: 0.01, y: -0.14}
-  m_UseDelaunayMesh: 0
---- !u!50 &8211040247174158199
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549713085233926302}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
+  - {x: -0.79866886, y: -0.7974743}
+  - {x: -0.048071623, y: -0.052636534}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

@@ -13,7 +13,7 @@ public class SpawnController : MonoBehaviour
     public float spawnAreaWidth = 10f; // Width of the spawn area
     public float spawnAreaHeight = 5f; // Height of the spawn area
 
-    private int totalEnemiesSpawned = 0; // Total number of enemies spawned
+    [SerializeField] private int totalEnemiesSpawned = 0; // Total number of enemies spawned
     private int basicEnemyCount = 3; // Initial number of BasicEnemies to spawn
     private int agileEnemyCount = 0; // Number of AgileEnemies to spawn
     private int tankEnemyCount = 0; // Number of TankEnemies to spawn
@@ -21,6 +21,7 @@ public class SpawnController : MonoBehaviour
 
     public void StartNextRound()
     {
+        totalEnemiesSpawned = 0;    
         int currentRound = gameManager.GetCurrentRound();
         if (currentRound > 0) // Only start spawning enemies after round 0
         {
@@ -61,14 +62,38 @@ public class SpawnController : MonoBehaviour
     void SpawnEnemy(GameObject enemyPrefab)
     {
         // Randomly choose a position within the spawn area
-        Vector2 spawnPosition = new Vector2(
-            Random.Range(spawnAreaCenter.x - spawnAreaWidth / 2, spawnAreaCenter.x + spawnAreaWidth / 2),
-            Random.Range(spawnAreaCenter.y - spawnAreaHeight / 2, spawnAreaCenter.y + spawnAreaHeight / 2)
-        );
+        Vector2 spawnPosition = GetValidSpawnPosition();
 
-        GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        totalEnemiesSpawned++;
-        Debug.Log("Spawned: " + newEnemy.name + " at " + spawnPosition);
+        if (spawnPosition != Vector2.zero)
+        {
+            GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            totalEnemiesSpawned++;
+            Debug.Log("Spawned: " + newEnemy.name + " at " + spawnPosition);
+        }
+    }
+
+    Vector2 GetValidSpawnPosition()
+    {
+        const int maxAttempts = 20; // Maximum number of attempts to find a valid spawn position
+
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            Vector2 spawnPosition = new Vector2(
+                Random.Range(spawnAreaCenter.x - spawnAreaWidth / 2, spawnAreaCenter.x + spawnAreaWidth / 2),
+                Random.Range(spawnAreaCenter.y - spawnAreaHeight / 2, spawnAreaCenter.y + spawnAreaHeight / 2)
+            );
+
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPosition, 1f); // Check for colliders within 1 unit radius
+
+            // Check if the spawn position is valid (not too close to other enemies)
+            if (colliders.Length == 0)
+            {
+                return spawnPosition;
+            }
+        }
+
+        // If no valid spawn position is found after maxAttempts, return zero vector
+        return Vector2.zero;
     }
 
     int CalculateBasicEnemyCountForRound(int roundNumber)
@@ -114,7 +139,7 @@ public class SpawnController : MonoBehaviour
         {
             // All enemies are destroyed, start the next round
             Debug.Log("Round is over!");
-            //gameManager.StartRound();
+            gameManager.StartRound();
         }
     }
 }
